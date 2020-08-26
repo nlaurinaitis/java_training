@@ -14,7 +14,7 @@ public class Cat {
 
         Point p1 = new Point(1, 2);
         Point p2 = new Point(3, 2);
-        System.out.println("Расстояние между точками с координатами " + p1.x + ";" + p1.y + " и " + p2.x + ";" + p2.y + " равняется " + p1.distance(p1, p2) + ".");
+        System.out.println("Расстояние между точками с координатами " + p1.x + ";" + p1.y + " и " + p2.x + ";" + p2.y + " равняется " + p1.distance(p2) + ".");
 
     }
 
