@@ -2,7 +2,7 @@ package ru.stqa.training.sandbox;
 
 public class Cat {
     public static void main(String[] args) {
-/*        meow("world");
+        meow("world");
         meow("user");
         meow("Anastasiia");
 
@@ -10,7 +10,7 @@ public class Cat {
         System.out.println("Площадь квадрата со стороной " + s.l + " равна " + s.area() + ".");
 
         Rectangle r = new Rectangle(4, 6);
-        System.out.println("Площадь прямоугольника со сторонами " + r.a + " и " + r.b + " равна " + r.area() + ".");*/
+        System.out.println("Площадь прямоугольника со сторонами " + r.a + " и " + r.b + " равна " + r.area() + ".");
 
         Point p1 = new Point(1, 2);
         Point p2 = new Point(3, 2);
@@ -18,8 +18,8 @@ public class Cat {
 
     }
 
-/*    public static void meow(String somebody) {
+    public static void meow(String somebody) {
         System.out.println("Meow, " + somebody + "!");
-    }*/
+    }
 
 }
