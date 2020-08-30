@@ -13,6 +13,7 @@ import java.util.concurrent.TimeUnit;
 public class TestBase {
     protected WebDriver wd;
 
+    //common
     @BeforeMethod(alwaysRun = true)
     public void setUp() throws Exception {
       wd = new ChromeDriver();
@@ -29,12 +30,36 @@ public class TestBase {
       wd.findElement(By.xpath("//input[@value='Login']")).click();
     }
 
-    protected void returnToGroupPage() {
-      wd.findElement(By.linkText("group page")).click();
+    @AfterMethod(alwaysRun = true)
+    public void tearDown() throws Exception {
+        wd.quit();
     }
 
-    protected void submitGroupCreation() {
-      wd.findElement(By.name("submit")).click();
+    private boolean isElementPresent(By by) {
+        try {
+            wd.findElement(by);
+            return true;
+        } catch (NoSuchElementException e) {
+            return false;
+        }
+    }
+
+    private boolean isAlertPresent() {
+        try {
+            wd.switchTo().alert();
+            return true;
+        } catch (NoAlertPresentException e) {
+            return false;
+        }
+    }
+
+    //group
+    protected void gotoGroupPage() {
+        wd.findElement(By.linkText("groups")).click();
+    }
+
+    protected void initGroupCreation() {
+        wd.findElement(By.name("new")).click();
     }
 
     protected void fillGroupForm(GroupData groupData) {
@@ -49,42 +74,50 @@ public class TestBase {
       wd.findElement(By.name("group_footer")).sendKeys(groupData.getFooter());
     }
 
-    protected void initGroupCreation() {
-      wd.findElement(By.name("new")).click();
+    protected void submitGroupCreation() {
+        wd.findElement(By.name("submit")).click();
     }
 
-    protected void gotoGroupPage() {
-      wd.findElement(By.linkText("groups")).click();
-    }
-
-    @AfterMethod(alwaysRun = true)
-    public void tearDown() throws Exception {
-      wd.quit();
-    }
-
-    private boolean isElementPresent(By by) {
-      try {
-        wd.findElement(by);
-        return true;
-      } catch (NoSuchElementException e) {
-        return false;
-      }
-    }
-
-    private boolean isAlertPresent() {
-      try {
-        wd.switchTo().alert();
-        return true;
-      } catch (NoAlertPresentException e) {
-        return false;
-      }
-    }
-
-    protected void deleteSelectedGroups() {
-      wd.findElement(By.name("delete")).click();
+    protected void returnToGroupPage() {
+        wd.findElement(By.linkText("group page")).click();
     }
 
     protected void selectGroup() {
-      wd.findElement(By.name("selected[]")).click();
+        wd.findElement(By.name("selected[]")).click();
+    }
+
+    protected void deleteSelectedGroups() {
+        wd.findElement(By.name("delete")).click();
+    }
+
+    //user
+    protected void gotoAddNewPage() {
+      wd.findElement(By.linkText("add new")).click();
+    }
+
+    protected void fillUserForm(UserData userData) {
+        wd.findElement(By.name("firstname")).click();
+        wd.findElement(By.name("firstname")).clear();
+        wd.findElement(By.name("firstname")).sendKeys(userData.getFirstName());
+        wd.findElement(By.name("lastname")).click();
+        wd.findElement(By.name("lastname")).clear();
+        wd.findElement(By.name("lastname")).sendKeys(userData.getLastName());
+        wd.findElement(By.name("nickname")).click();
+        wd.findElement(By.name("nickname")).clear();
+        wd.findElement(By.name("nickname")).sendKeys(userData.getNickname());
+        wd.findElement(By.name("home")).click();
+        wd.findElement(By.name("home")).clear();
+        wd.findElement(By.name("home")).sendKeys(userData.getHomeNumber());
+        wd.findElement(By.name("email")).click();
+        wd.findElement(By.name("email")).clear();
+        wd.findElement(By.name("email")).sendKeys(userData.getEmail());
+    }
+
+    protected void submitUserCreation() {
+        wd.findElement(By.xpath("(//input[@name='submit'])[2]")).click();
+    }
+
+    protected void returnToHomePage() {
+      wd.findElement(By.linkText("home page")).click();
     }
 }
