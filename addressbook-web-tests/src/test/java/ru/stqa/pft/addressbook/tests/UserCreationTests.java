@@ -7,10 +7,10 @@ public class UserCreationTests extends TestBase {
 
   @Test
   public void testUserCreation() throws Exception {
-    app.gotoAddNewPage();
-    app.fillUserForm(new UserData("Kitty", "Cat", "meow", "3472737", "kittycat@test.com"));
-    app.submitUserCreation();
-    app.returnToHomePage();
+    app.getNavigationHelper().gotoAddNewPage();
+    app.getContactHelper().fillUserForm(new UserData("Kitty", "Cat", "meow", "3472737", "kittycat@test.com"));
+    app.getContactHelper().submitUserCreation();
+    app.getContactHelper().returnToHomePage();
   }
 
 }
