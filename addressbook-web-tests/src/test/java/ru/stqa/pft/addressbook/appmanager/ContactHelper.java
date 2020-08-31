@@ -25,4 +25,20 @@ public class ContactHelper extends BaseHelper {
     public void returnToHomePage() {
         click(By.linkText("home page"));
     }
+
+    public void selectUser() {
+        click(By.name("selected[]"));
+    }
+
+    public void deleteSelectedUser() {
+        click(By.xpath("(//input[@value='Delete'])"));
+    }
+
+    public void initUserModification() {
+        click(By.xpath("//img[@alt='Edit']"));
+    }
+
+    public void submitUserModification() {
+        click(By.xpath("(//input[@name='update'])[2]"));
+    }
 }

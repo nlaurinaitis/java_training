@@ -16,4 +16,12 @@ public class NavigationHelper extends BaseHelper {
     public void gotoAddNewPage() {
         click(By.linkText("add new"));
     }
+
+    public void gotoHomePage() {
+        click(By.linkText("home"));
+    }
+
+    public void closeAlert() {
+        wd.switchTo().alert().accept();
+    }
 }
