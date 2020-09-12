@@ -45,13 +45,17 @@ public class GroupHelper extends BaseHelper {
     }
 
     public void createGroup(GroupData group) {
-       initGroupCreation();
-       fillGroupForm(group);
-       submitGroupCreation();
-       returnToGroupPage();
+        initGroupCreation();
+        fillGroupForm(group);
+        submitGroupCreation();
+        returnToGroupPage();
     }
 
     public boolean isThereAGroup() {
         return isElementPresent(By.name("selected[]"));
+    }
+
+    public int getGroupCount() {
+        return wd.findElements(By.name("selected[]")).size();
     }
 }
