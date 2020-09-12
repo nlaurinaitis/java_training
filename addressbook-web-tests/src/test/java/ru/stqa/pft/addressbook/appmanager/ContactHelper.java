@@ -36,16 +36,16 @@ public class ContactHelper extends BaseHelper {
         click(By.linkText("home page"));
     }
 
-    public void selectUser() {
-        click(By.name("selected[]"));
+    public void selectUser(int index) {
+        wd.findElements(By.name("selected[]")).get (index).click();
     }
 
     public void deleteSelectedUser() {
         click(By.xpath("(//input[@value='Delete'])"));
     }
 
-    public void initUserModification() {
-        click(By.xpath("//img[@alt='Edit']"));
+    public void initUserModification(int index) {
+        wd.findElements(By.xpath("//img[@alt='Edit']")).get (index).click();
     }
 
     public void submitUserModification() {

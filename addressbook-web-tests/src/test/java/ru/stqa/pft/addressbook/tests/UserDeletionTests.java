@@ -13,7 +13,7 @@ public class UserDeletionTests extends TestBase {
             app.getContactHelper().createUser(new UserData("Kitty", "Cat", "meow", "3472737", "kittycat@test.com", "test1"));
         }
         int before = app.getContactHelper().getUserCount();
-        app.getContactHelper().selectUser();
+        app.getContactHelper().selectUser(before - 1);
         app.getContactHelper().deleteSelectedUser();
         app.getNavigationHelper().closeAlert();
         app.getNavigationHelper().gotoHomePage();
