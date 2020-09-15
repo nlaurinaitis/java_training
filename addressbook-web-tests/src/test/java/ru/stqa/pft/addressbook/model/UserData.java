@@ -1,7 +1,11 @@
 package ru.stqa.pft.addressbook.model;
 
 public class UserData {
-    private final String id;
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    private int id;
     private final String firstName;
     private final String lastName;
     private final String nickname;
@@ -11,7 +15,7 @@ public class UserData {
 
     public UserData(String firstName, String lastName, String nickname, String homeNumber, String email,
                     String group) {
-        this.id = null;
+        this.id = 0;
         this.firstName = firstName;
         this.lastName = lastName;
         this.nickname = nickname;
@@ -20,7 +24,7 @@ public class UserData {
         this.group = group;
     }
 
-    public UserData(String id, String firstName, String lastName, String nickname, String homeNumber, String email,
+    public UserData(int id, String firstName, String lastName, String nickname, String homeNumber, String email,
                     String group) {
         this.id = id;
         this.firstName = firstName;
@@ -31,7 +35,7 @@ public class UserData {
         this.group = group;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
@@ -66,14 +70,14 @@ public class UserData {
 
         UserData userData = (UserData) o;
 
-        if (id != null ? !id.equals(userData.id) : userData.id != null) return false;
+        if (id != userData.id) return false;
         if (firstName != null ? !firstName.equals(userData.firstName) : userData.firstName != null) return false;
         return lastName != null ? lastName.equals(userData.lastName) : userData.lastName == null;
     }
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
+        int result = id;
         result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
         result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
         return result;
