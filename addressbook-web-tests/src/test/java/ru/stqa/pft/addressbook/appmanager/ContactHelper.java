@@ -75,8 +75,10 @@ public class ContactHelper extends BaseHelper {
         List<WebElement> elements = wd.findElements(By.cssSelector("tr[name = 'entry']"));
 //        List<WebElement> elements = wd.findElements(By.cssSelector("input[type='checkbox'][name='selected[]']"));
         for(WebElement element : elements) {
-            String firstName = element.findElement(By.cssSelector("td.center")).getText();
-            String lastName = element.findElement(By.cssSelector("td.center")).getText();
+            String firstName = element.getText();
+            String lastName = element.getText();
+//            String firstName = element.findElement(By.cssSelector("td.center")).getText();
+//            String lastName = element.findElement(By.cssSelector("td.center")).getText();
             UserData user = new UserData (firstName, lastName, null, null, null, null);
             users.add(user);
         }
