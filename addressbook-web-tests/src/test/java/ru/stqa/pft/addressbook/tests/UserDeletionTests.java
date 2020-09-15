@@ -4,6 +4,8 @@ package ru.stqa.pft.addressbook.tests;
         import org.testng.annotations.Test;
         import ru.stqa.pft.addressbook.model.UserData;
 
+        import java.util.List;
+
 public class UserDeletionTests extends TestBase {
     @Test
     public void testUserDeletion() throws Exception {
@@ -12,12 +14,12 @@ public class UserDeletionTests extends TestBase {
             app.getNavigationHelper().gotoAddNewPage();
             app.getContactHelper().createUser(new UserData("Kitty", "Cat", "meow", "3472737", "kittycat@test.com", "test1"));
         }
-        int before = app.getContactHelper().getUserCount();
-        app.getContactHelper().selectUser(before - 1);
+        List<UserData> before = app.getContactHelper().getUserList();
+        app.getContactHelper().selectUser(before.size() - 1);
         app.getContactHelper().deleteSelectedUser();
         app.getNavigationHelper().closeAlert();
         app.getNavigationHelper().gotoHomePage();
-        int after = app.getContactHelper().getUserCount();
-        Assert.assertEquals(after, before - 1);
+        List<UserData> after = app.getContactHelper().getUserList();
+        Assert.assertEquals(after.size(), before.size() - 1);
     }
 }

@@ -3,9 +3,13 @@ package ru.stqa.pft.addressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.UserData;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ContactHelper extends BaseHelper {
 
@@ -64,5 +68,18 @@ public class ContactHelper extends BaseHelper {
 
     public int getUserCount() {
         return wd.findElements(By.name("selected[]")).size();
+    }
+
+    public List<UserData> getUserList() {
+        List<UserData> users = new ArrayList<UserData>();
+        List<WebElement> elements = wd.findElements(By.cssSelector("tr[name = 'entry']"));
+//        List<WebElement> elements = wd.findElements(By.cssSelector("input[type='checkbox'][name='selected[]']"));
+        for(WebElement element : elements) {
+            String firstName = element.findElement(By.cssSelector("td.center")).getText();
+            String lastName = element.findElement(By.cssSelector("td.center")).getText();
+            UserData user = new UserData (firstName, lastName, null, null, null, null);
+            users.add(user);
+        }
+        return users;
     }
 }
