@@ -18,12 +18,6 @@ public class UserCreationTests extends TestBase {
     List<UserData> after = app.getContactHelper().getUserList();
     Assert.assertEquals(after.size(), before.size() + 1);
 
-//    int max = 0;
-//    for (UserData u : after) {
-//      if (u.getId() > max) {
-//        max = u.getId();
-//      }
-//    }
     user.setId(after.stream().max((o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId());
     before.add(user);
     Assert.assertEquals (new HashSet<Object>(before), new HashSet<Object>(after));
