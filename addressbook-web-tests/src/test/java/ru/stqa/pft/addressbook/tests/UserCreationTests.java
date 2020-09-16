@@ -13,18 +13,18 @@ public class UserCreationTests extends TestBase {
   public void testUserCreation() throws Exception {
     List<UserData> before = app.getContactHelper().getUserList();
     app.getNavigationHelper().gotoAddNewPage();
-    UserData user = new UserData("Kitty", "Cat", "meow", "3472737", "kittycat@test.com", "test1");
+    UserData user = new UserData("Harry", "Potter", "meow1", "1234567", "hp@test.com", "test2");
     app.getContactHelper().createUser(user);
     List<UserData> after = app.getContactHelper().getUserList();
     Assert.assertEquals(after.size(), before.size() + 1);
 
-    int max = 0;
-    for (UserData u : after) {
-      if (u.getId() > max) {
-        max = u.getId();
-      }
-    }
-    user.setId(max);
+//    int max = 0;
+//    for (UserData u : after) {
+//      if (u.getId() > max) {
+//        max = u.getId();
+//      }
+//    }
+    user.setId(after.stream().max((o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId());
     before.add(user);
     Assert.assertEquals (new HashSet<Object>(before), new HashSet<Object>(after));
   }
