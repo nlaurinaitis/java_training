@@ -62,6 +62,13 @@ public class ContactHelper extends BaseHelper {
         returnToHomePage();
     }
 
+    public void modifyUser(int index, UserData user) {
+        initUserModification(index);
+        fillUserForm(user, false);
+        submitUserModification();
+        returnToHomePage();
+    }
+
     public boolean isThereAUser() {
       return isElementPresent(By.name("selected[]"));
     }
