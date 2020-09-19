@@ -15,7 +15,8 @@ public class UserModificationTests extends TestBase {
         app.goTo().homePage();
         if (app.user().list().size() == 0) {
             app.goTo().addNew();
-            app.user().create(new UserData("Kitty", "Cat", "meow", "3472737", "kittycat@test.com", "test1"));
+            app.user().create(new UserData().withFirstName("Kitty").withLastName("Cat").withNickname("meow").withHomeNumber("3472737")
+                    .withEmail("kittycat@test").withGroup("test1"));
         }
     }
 
@@ -23,7 +24,9 @@ public class UserModificationTests extends TestBase {
     public void testUserModification() throws Exception {
         List<UserData> before = app.user().list();
         int index = before.size() - 1;
-        UserData user = new UserData(before.get(index).getId(), "Kitty1", "Cat1", "meow1", "3472737","kittycat1@test.com", null);
+        UserData user =
+                new UserData().withId(before.get(index).getId()).withFirstName("Kitty").withLastName("Cat").withNickname("meow").withHomeNumber("3472737")
+                        .withEmail("kittycat@test");
         app.user().modify(index, user);
         List<UserData> after = app.user().list();
         Assert.assertEquals(after.size(), before.size());

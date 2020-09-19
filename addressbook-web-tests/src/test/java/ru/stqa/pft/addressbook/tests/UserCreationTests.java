@@ -14,7 +14,9 @@ public class UserCreationTests extends TestBase {
         app.goTo().homePage();
         List<UserData> before = app.user().list();
         app.goTo().addNew();
-        UserData user = new UserData("Harry", "Potter", "meow1", "1234567", "hp@test.com", "test1");
+        UserData user =
+                new UserData().withFirstName("Harry").withLastName("Potter").withNickname("meow1").withHomeNumber(
+                        "1234567").withEmail("hp@test.com").withGroup("test1");
         app.user().create(user);
         List<UserData> after = app.user().list();
         Assert.assertEquals(after.size(), before.size() + 1);
