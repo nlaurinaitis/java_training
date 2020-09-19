@@ -56,17 +56,23 @@ public class ContactHelper extends BaseHelper {
         click(By.xpath("(//input[@name='update'])[2]"));
     }
 
-    public void createUser(UserData user) {
+    public void create(UserData user) {
         fillUserForm(user, true);
         submitUserCreation();
         returnToHomePage();
     }
 
-    public void modifyUser(int index, UserData user) {
+    public void modify(int index, UserData user) {
         initUserModification(index);
         fillUserForm(user, false);
         submitUserModification();
         returnToHomePage();
+    }
+
+    public void delete(int index) {
+        selectUser(index);
+        deleteSelectedUser();
+        closeAlert();
     }
 
     public boolean isThereAUser() {
@@ -77,7 +83,7 @@ public class ContactHelper extends BaseHelper {
         return wd.findElements(By.name("selected[]")).size();
     }
 
-    public List<UserData> getUserList() {
+    public List<UserData> list() {
         List<UserData> users = new ArrayList<UserData>();
         List<WebElement> elements = wd.findElements(By.cssSelector("tr[name = 'entry']"));
         for(WebElement element : elements) {
@@ -88,5 +94,9 @@ public class ContactHelper extends BaseHelper {
             users.add(user);
         }
         return users;
+    }
+
+    public void closeAlert() {
+        wd.switchTo().alert().accept();
     }
 }

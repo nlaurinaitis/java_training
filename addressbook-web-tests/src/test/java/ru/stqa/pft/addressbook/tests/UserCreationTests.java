@@ -11,12 +11,12 @@ public class UserCreationTests extends TestBase {
 
     @Test
     public void testUserCreation() throws Exception {
-        app.getNavigationHelper().gotoHomePage();
-        List<UserData> before = app.getContactHelper().getUserList();
-        app.getNavigationHelper().gotoAddNewPage();
+        app.goTo().homePage();
+        List<UserData> before = app.user().list();
+        app.goTo().addNew();
         UserData user = new UserData("Harry", "Potter", "meow1", "1234567", "hp@test.com", "test1");
-        app.getContactHelper().createUser(user);
-        List<UserData> after = app.getContactHelper().getUserList();
+        app.user().create(user);
+        List<UserData> after = app.user().list();
         Assert.assertEquals(after.size(), before.size() + 1);
 
         Comparator<? super UserData> byId = (u1, u2) -> Integer.compare(u1.getId(), u2.getId());
