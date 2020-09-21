@@ -64,6 +64,7 @@ public class ContactHelper extends BaseHelper {
     public void create(UserData user) {
         fillUserForm(user, true);
         submitUserCreation();
+        userCache = null;
         returnToHomePage();
     }
 
@@ -71,6 +72,7 @@ public class ContactHelper extends BaseHelper {
         initUserModificationById(user.getId());
         fillUserForm(user, false);
         submitUserModification();
+        userCache = null;
         returnToHomePage();
     }
 
@@ -78,6 +80,7 @@ public class ContactHelper extends BaseHelper {
         selectUserById(user.getId());
         deleteSelectedUser();
         closeAlert();
+        userCache = null;
     }
 
     public boolean isThereAUser() {
@@ -88,16 +91,21 @@ public class ContactHelper extends BaseHelper {
         return wd.findElements(By.name("selected[]")).size();
     }
 
+    public Users userCache = null;
+
     public Users all() {
-        Users users = new Users();
+        if (userCache != null) {
+            return new Users (userCache);
+        }
+        userCache = new Users();
         List<WebElement> elements = wd.findElements(By.cssSelector("tr[name = 'entry']"));
         for(WebElement element : elements) {
             String firstName = element.findElement(By.cssSelector("td:nth-child(3)")).getText();
             String lastName = element.findElement(By.cssSelector("td:nth-child(2)")).getText();
             int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-            users.add(new UserData().withId(id).withFirstName(firstName).withLastName(lastName));
+            userCache.add(new UserData().withId(id).withFirstName(firstName).withLastName(lastName));
         }
-        return users;
+        return new Users (userCache);
     }
 
     public void closeAlert() {
