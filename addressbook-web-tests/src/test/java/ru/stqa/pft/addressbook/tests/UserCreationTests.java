@@ -6,7 +6,6 @@ import ru.stqa.pft.addressbook.model.Users;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.testng.Assert.assertEquals;
 
 public class UserCreationTests extends TestBase {
 
@@ -19,9 +18,8 @@ public class UserCreationTests extends TestBase {
                 new UserData().withFirstName("Harry").withLastName("Potter").withNickname("meow1").withHomeNumber(
                         "1234567").withEmail("hp@test.com").withGroup("test1");
         app.user().create(user);
+        assertThat(app.user().count(), equalTo(before.size() + 1));
         Users after = app.user().all();
-
-        assertEquals(after.size(), before.size() + 1);
         assertThat(after, equalTo(before.withAdded(user.withId(after.stream().mapToInt((u) -> u.getId()).max().getAsInt()))));
     }
 }
