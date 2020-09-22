@@ -103,8 +103,10 @@ public class ContactHelper extends BaseHelper {
         for(WebElement element : elements) {
             String firstName = element.findElement(By.cssSelector("td:nth-child(3)")).getText();
             String lastName = element.findElement(By.cssSelector("td:nth-child(2)")).getText();
+            String[] phones = element.findElement(By.cssSelector("td:nth-child(6)")).getText().split("\n");
             int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-            userCache.add(new UserData().withId(id).withFirstName(firstName).withLastName(lastName));
+            userCache.add(new UserData().withId(id).withFirstName(firstName).withLastName(lastName)
+            .withHomeNumber(phones[0]).withMobNumber(phones[1]).withWorkNumber(phones[2]));
         }
         return new Users (userCache);
     }

@@ -1,9 +1,11 @@
 package ru.stqa.pft.addressbook.tests;
 
-
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.UserData;
+
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class UserPhoneTests extends TestBase {
 
@@ -23,5 +25,13 @@ public class UserPhoneTests extends TestBase {
         app.goTo().homePage();
         UserData user = app.user().all().iterator().next();
         UserData userInfoEditForm = app.user().infoFromEditForm(user);
+
+        assertThat(user.getHomeNumber(), equalTo(cleaned(userInfoEditForm.getHomeNumber())));
+        assertThat(user.getMobNumber(), equalTo(cleaned(userInfoEditForm.getMobNumber())));
+        assertThat(user.getWorkNumber(), equalTo(cleaned(userInfoEditForm.getWorkNumber())));
+    }
+
+    public String cleaned(String phone) {
+        return phone.replaceAll("\\s", "").replaceAll("[-()]", "");
     }
 }
