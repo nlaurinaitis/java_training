@@ -15,8 +15,8 @@ public class UserCreationTests extends TestBase {
         Users before = app.user().all();
         app.goTo().addNew();
         UserData user =
-                new UserData().withFirstName("Harry").withLastName("Potter").withNickname("meow1").withHomeNumber(
-                        "1234567").withEmail("hp@test.com").withGroup("test1");
+                new UserData().withFirstName("Harry").withLastName("Potter").withNickname("meow1").withAddress("UK, London, Privet Drive, 4")
+                        .withHomeNumber("1234567").withMobNumber("89212343434").withWorkNumber("1420908").withEmail("hp@test.com").withGroup("test1");
         app.user().create(user);
         assertThat(app.user().count(), equalTo(before.size() + 1));
         Users after = app.user().all();

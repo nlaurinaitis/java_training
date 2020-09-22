@@ -6,7 +6,10 @@ public class UserData {
     private String firstName;
     private String lastName;
     private String nickname;
+    private String address;
     private String homeNumber;
+    private String mobNumber;
+    private String workNumber;
     private String email;
     private String group;
 
@@ -30,8 +33,23 @@ public class UserData {
         return this;
     }
 
+    public UserData withAddress(String address) {
+        this.address = address;
+        return this;
+    }
+
     public UserData withHomeNumber(String homeNumber) {
         this.homeNumber = homeNumber;
+        return this;
+    }
+
+    public UserData withMobNumber(String mobNumber) {
+        this.mobNumber = mobNumber;
+        return this;
+    }
+
+    public UserData withWorkNumber(String workNumber) {
+        this.workNumber = workNumber;
         return this;
     }
 
@@ -61,8 +79,20 @@ public class UserData {
         return nickname;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
     public String getHomeNumber() {
         return homeNumber;
+    }
+
+    public String getMobNumber() {
+        return mobNumber;
+    }
+
+    public String getWorkNumber() {
+        return workNumber;
     }
 
     public String getEmail() {

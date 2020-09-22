@@ -8,9 +8,7 @@ import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.UserData;
 import ru.stqa.pft.addressbook.model.Users;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class ContactHelper extends BaseHelper {
 
@@ -22,7 +20,10 @@ public class ContactHelper extends BaseHelper {
         type(By.name("firstname"), userData.getFirstName());
         type(By.name("lastname"), userData.getLastName());
         type(By.name("nickname"), userData.getNickname());
+        type(By.name("address"), userData.getAddress());
         type(By.name("home"), userData.getHomeNumber());
+        type(By.name("mobile"), userData.getMobNumber());
+        type(By.name("work"), userData.getWorkNumber());
         type(By.name("email"), userData.getEmail());
 
         if (creation) {
@@ -110,5 +111,17 @@ public class ContactHelper extends BaseHelper {
 
     public void closeAlert() {
         wd.switchTo().alert().accept();
+    }
+
+    public UserData infoFromEditForm(UserData user) {
+        initUserModificationById(user.getId());
+        String firstName = wd.findElement(By.name("firstname")).getAttribute("value");
+        String lastName = wd.findElement(By.name("lastname")).getAttribute("value");
+        String homeNumber = wd.findElement(By.name("home")).getAttribute("value");
+        String mobNumber = wd.findElement(By.name("mobile")).getAttribute("value");
+        String workNumber = wd.findElement(By.name("work")).getAttribute("value");
+        wd.navigate().back();
+        return new UserData().withId(user.getId()).withFirstName(firstName).withLastName(lastName)
+                .withHomeNumber(homeNumber).withMobNumber(mobNumber).withWorkNumber(workNumber);
     }
 }
