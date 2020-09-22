@@ -4,6 +4,9 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.UserData;
 
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
+
 public class UserAddressTests extends TestBase {
 
     @BeforeMethod
@@ -22,5 +25,7 @@ public class UserAddressTests extends TestBase {
         app.goTo().homePage();
         UserData user = app.user().all().iterator().next();
         UserData userInfoEditForm = app.user().infoFromEditForm(user);
+
+        assertThat(user.getAddress(), equalTo(userInfoEditForm.getAddress()));
     }
 }
