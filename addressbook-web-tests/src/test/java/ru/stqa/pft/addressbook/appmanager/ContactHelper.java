@@ -106,12 +106,11 @@ public class ContactHelper extends BaseHelper {
             String firstName = element.findElement(By.cssSelector("td:nth-child(3)")).getText();
             String lastName = element.findElement(By.cssSelector("td:nth-child(2)")).getText();
             String address = element.findElement(By.cssSelector("td:nth-child(4)")).getText();
-            String[] phones = element.findElement(By.cssSelector("td:nth-child(6)")).getText().split("\n");
-            String[] emails = element.findElement(By.cssSelector("td:nth-child(5)")).getText().split("\n");
+            String allPhones = element.findElement(By.cssSelector("td:nth-child(6)")).getText();
+            String allEmails = element.findElement(By.cssSelector("td:nth-child(5)")).getText();
             int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
             userCache.add(new UserData().withId(id).withFirstName(firstName).withLastName(lastName).withAddress(address)
-            .withHomeNumber(phones[0]).withMobNumber(phones[1]).withWorkNumber(phones[2])
-            .withEmail(emails[0]).withEmail2(emails[1]).withEmail3(emails[2]));
+            .withAllPhones(allPhones).withAllEmails(allEmails));
         }
         return new Users (userCache);
     }
