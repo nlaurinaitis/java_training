@@ -1,0 +1,50 @@
+<list>
+  <user>
+    <firstName>Harry0</firstName>
+    <lastName>Potter0</lastName>
+    <address>UK, London, Privet Drive, 0</address>
+    <homeNumber>3472730</homeNumber>
+    <email>hp0@test.com</email>
+    <group>test 0</group>
+  </user>
+  <user>
+    <firstName>Harry1</firstName>
+    <lastName>Potter1</lastName>
+    <address>UK, London, Privet Drive, 1</address>
+    <homeNumber>3472731</homeNumber>
+    <email>hp1@test.com</email>
+    <group>test 1</group>
+  </user>
+  <user>
+    <firstName>Harry2</firstName>
+    <lastName>Potter2</lastName>
+    <address>UK, London, Privet Drive, 2</address>
+    <homeNumber>3472732</homeNumber>
+    <email>hp2@test.com</email>
+    <group>test 2</group>
+  </user>
+  <user>
+    <firstName>Harry3</firstName>
+    <lastName>Potter3</lastName>
+    <address>UK, London, Privet Drive, 3</address>
+    <homeNumber>3472733</homeNumber>
+    <email>hp3@test.com</email>
+    <group>test 3</group>
+  </user>
+  <user>
+    <firstName>Harry4</firstName>
+    <lastName>Potter4</lastName>
+    <address>UK, London, Privet Drive, 4</address>
+    <homeNumber>3472734</homeNumber>
+    <email>hp4@test.com</email>
+    <group>test 4</group>
+  </user>
+  <user>
+    <firstName>Harry5</firstName>
+    <lastName>Potter5</lastName>
+    <address>UK, London, Privet Drive, 5</address>
+    <homeNumber>3472735</homeNumber>
+    <email>hp5@test.com</email>
+    <group>test 5</group>
+  </user>
+</list>
