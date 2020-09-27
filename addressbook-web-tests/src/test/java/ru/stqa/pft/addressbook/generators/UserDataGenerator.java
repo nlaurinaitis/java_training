@@ -40,7 +40,7 @@ public class UserDataGenerator {
     private void save(List<UserData> users, File file) throws IOException {
         Writer writer = new FileWriter(file);
         for (UserData user : users) {
-            writer.write(String.format("%s; %s; %s; %s; %s; %s\n", user.getFirstName(), user.getLastName(),
+            writer.write(String.format("%s;%s;%s;%s;%s;%s\n", user.getFirstName(), user.getLastName(),
                     user.getHomeNumber(), user.getEmail(), user.getAddress(), user.getGroup()));
         }
         writer.close();
@@ -54,7 +54,7 @@ public class UserDataGenerator {
                     .withHomeNumber(String.format("347273%s", i))
                     .withEmail(String.format("hp%s@test.com", i))
                     .withAddress(String.format("UK, London, Privet Drive, %s", i))
-                    .withGroup(String.format("test%s", i)));
+                    .withGroup(String.format("test %s", i)));
         }
         return users;
     }

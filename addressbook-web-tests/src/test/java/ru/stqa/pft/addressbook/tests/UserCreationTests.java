@@ -2,10 +2,14 @@ package ru.stqa.pft.addressbook.tests;
 
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import ru.stqa.pft.addressbook.model.GroupData;
 import ru.stqa.pft.addressbook.model.UserData;
 import ru.stqa.pft.addressbook.model.Users;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -16,14 +20,20 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class UserCreationTests extends TestBase {
 
     @DataProvider
-    public Iterator<Object[]> validUsers() {
+    public Iterator<Object[]> validUsers() throws IOException {
         List<Object[]> list = new ArrayList<Object[]>();
-        list.add (new Object[] {new UserData().withFirstName("Harry1").withLastName("Potter1").withHomeNumber(
-                "3472731").withEmail("hp1@test.com").withAddress("UK, London, Privet Drive, 1").withGroup("test1")});
-        list.add (new Object[] {new UserData().withFirstName("Harry2").withLastName("Potter2").withHomeNumber(
-                "3472732").withEmail("hp2@test.com").withAddress("UK, London, Privet Drive, 2").withGroup("test2")});
-        list.add (new Object[] {new UserData().withFirstName("Harry3").withLastName("Potter3").withHomeNumber(
-                "3472733").withEmail("hp3@test.com").withAddress("UK, London, Privet Drive, 3").withGroup("test3")});
+        BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/users.csv")));
+        String line = reader.readLine();
+        while (line != null) {
+            String[] split = line.split(";");
+            list.add(new Object[] {new UserData().withFirstName(split[0])
+                    .withLastName(split[1])
+                    .withHomeNumber(split[2])
+                    .withEmail(split[3])
+                    .withAddress(split[4])
+                    .withGroup(split[5])});
+            line = reader.readLine();
+        }
         return list.iterator();
     }
 
