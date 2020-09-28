@@ -70,7 +70,8 @@ public class UserCreationTests extends TestBase {
             }
             Gson gson = new Gson();
             List <UserData> users = gson.fromJson(json, new TypeToken<List<UserData>>(){}.getType());
-            return users.stream().map((u) -> new Object[] {u}).collect(Collectors.toList()).iterator();}
+            return users.stream().map((u) -> new Object[] {u}).collect(Collectors.toList()).iterator();
+        }
     }
 
     @Test(dataProvider = "validUsersFromJson")
