@@ -22,29 +22,5 @@
     "homeNumber": "3472732",
     "email": "hp2@test.com",
     "group": "test 2"
-  },
-  {
-    "firstName": "Harry3",
-    "lastName": "Potter3",
-    "address": "UK, London, Privet Drive, 3",
-    "homeNumber": "3472733",
-    "email": "hp3@test.com",
-    "group": "test 3"
-  },
-  {
-    "firstName": "Harry4",
-    "lastName": "Potter4",
-    "address": "UK, London, Privet Drive, 4",
-    "homeNumber": "3472734",
-    "email": "hp4@test.com",
-    "group": "test 4"
-  },
-  {
-    "firstName": "Harry5",
-    "lastName": "Potter5",
-    "address": "UK, London, Privet Drive, 5",
-    "homeNumber": "3472735",
-    "email": "hp5@test.com",
-    "group": "test 5"
   }
 ]

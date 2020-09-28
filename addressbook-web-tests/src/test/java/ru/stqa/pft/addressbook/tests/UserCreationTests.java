@@ -26,49 +26,51 @@ public class UserCreationTests extends TestBase {
 
     @DataProvider
     public Iterator<Object[]> validUsersFromCsv() throws IOException {
-        List<Object[]> list = new ArrayList<Object[]>();
-        BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/users.csv")));
-        String line = reader.readLine();
-        while (line != null) {
-            String[] split = line.split(";");
-            list.add(new Object[] {new UserData().withFirstName(split[0])
-                    .withLastName(split[1])
-                    .withHomeNumber(split[2])
-                    .withEmail(split[3])
-                    .withAddress(split[4])
-                    .withGroup(split[5])});
-            line = reader.readLine();
+        try (BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/users.csv")))) {
+            List<Object[]> list = new ArrayList<Object[]>();
+            String line = reader.readLine();
+            while (line != null) {
+                String[] split = line.split(";");
+                list.add(new Object[] {new UserData().withFirstName(split[0])
+                        .withLastName(split[1])
+                        .withHomeNumber(split[2])
+                        .withEmail(split[3])
+                        .withAddress(split[4])
+                        .withGroup(split[5])});
+                line = reader.readLine();
+            }
+            return list.iterator();
         }
-        return list.iterator();
     }
 
     @DataProvider
     public Iterator<Object[]> validUsersFromXml() throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/users.xml")));
-        String xml = "";
-        String line = reader.readLine();
-        while (line != null) {
-            xml += line;
-            line = reader.readLine();
+        try (BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/users.xml")))) {
+            String xml = "";
+            String line = reader.readLine();
+            while (line != null) {
+                xml += line;
+                line = reader.readLine();
+            }
+            XStream xstream = new XStream();
+            xstream.processAnnotations(UserData.class);
+            List <UserData> users = (List<UserData>) xstream.fromXML(xml);
+            return users.stream().map((u) -> new Object[] {u}).collect(Collectors.toList()).iterator();
         }
-        XStream xstream = new XStream();
-        xstream.processAnnotations(UserData.class);
-        List <UserData> users = (List<UserData>) xstream.fromXML(xml);
-        return users.stream().map((u) -> new Object[] {u}).collect(Collectors.toList()).iterator();
     }
 
     @DataProvider
     public Iterator<Object[]> validUsersFromJson() throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/users.json")));
-        String json = "";
-        String line = reader.readLine();
-        while (line != null) {
-            json += line;
-            line = reader.readLine();
-        }
-        Gson gson = new Gson();
-        List <UserData> users = gson.fromJson(json, new TypeToken<List<UserData>>(){}.getType());
-        return users.stream().map((u) -> new Object[] {u}).collect(Collectors.toList()).iterator();
+        try (BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/users.json")))) {
+            String json = "";
+            String line = reader.readLine();
+            while (line != null) {
+                json += line;
+                line = reader.readLine();
+            }
+            Gson gson = new Gson();
+            List <UserData> users = gson.fromJson(json, new TypeToken<List<UserData>>(){}.getType());
+            return users.stream().map((u) -> new Object[] {u}).collect(Collectors.toList()).iterator();}
     }
 
     @Test(dataProvider = "validUsersFromJson")
