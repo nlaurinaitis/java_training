@@ -83,11 +83,11 @@ public class UserCreationTests extends TestBase {
 //                        .withEmail("hp@test.com").withEmail2("hp2@test.com").withEmail3("hp3@test.com")
 //                        .withPhoto(photo).withGroup("test1");
         app.goTo().homePage();
-        Users before = app.user().all();
+        Users before = app.db().users();
         app.goTo().addNew();
         app.user().create(user);
         assertThat(app.user().count(), equalTo(before.size() + 1));
-        Users after = app.user().all();
+        Users after = app.db().users();
         assertThat(after, equalTo(before.withAdded(user.withId(after.stream().mapToInt((u) -> u.getId()).max().getAsInt()))));
     }
 }

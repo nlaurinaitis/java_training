@@ -74,6 +74,7 @@ public class UserData {
     @Expose
     @Column(name = "photo")
     @Type(type = "text")
+    @Transient
     private String photo;
 
     @Expose

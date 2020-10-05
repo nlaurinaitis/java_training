@@ -5,7 +5,8 @@
     "address": "UK, London, Privet Drive, 0",
     "homeNumber": "3472730",
     "email": "hp0@test.com",
-    "group": "test 0"
+    "group": "test 0",
+    "photo": "C:\\Users\\aslobods\\Downloads\\00000_java\\java_training\\addressbook-web-tests\\src\\test\\resources\\goose.jpg"
   },
   {
     "firstName": "Harry1",
@@ -13,7 +14,8 @@
     "address": "UK, London, Privet Drive, 1",
     "homeNumber": "3472731",
     "email": "hp1@test.com",
-    "group": "test 1"
+    "group": "test 1",
+    "photo": "C:\\Users\\aslobods\\Downloads\\00000_java\\java_training\\addressbook-web-tests\\src\\test\\resources\\goose.jpg"
   },
   {
     "firstName": "Harry2",
@@ -21,6 +23,7 @@
     "address": "UK, London, Privet Drive, 2",
     "homeNumber": "3472732",
     "email": "hp2@test.com",
-    "group": "test 2"
+    "group": "test 2",
+    "photo": "C:\\Users\\aslobods\\Downloads\\00000_java\\java_training\\addressbook-web-tests\\src\\test\\resources\\goose.jpg"
   }
 ]
