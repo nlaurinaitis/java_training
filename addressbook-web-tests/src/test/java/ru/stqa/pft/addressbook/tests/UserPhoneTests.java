@@ -19,7 +19,9 @@ public class UserPhoneTests extends TestBase {
             app.goTo().addNew();
             app.user().create(new UserData().withFirstName("Kitty").withLastName("Cat").withAddress("UK, London, Privet Drive, 4")
                     .withNickname("meow").withHomeNumber("3472737").withMobNumber("89212343434").withWorkNumber("1420978")
-                    .withEmail("kittycat@test").withGroup("test1"));
+                    .withEmail("kittycat@test")
+//                    .withGroup("test1")
+            );
         }
     }
 

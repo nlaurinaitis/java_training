@@ -6,6 +6,7 @@ import com.thoughtworks.xstream.XStream;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.GroupData;
+import ru.stqa.pft.addressbook.model.Groups;
 import ru.stqa.pft.addressbook.model.UserData;
 import ru.stqa.pft.addressbook.model.Users;
 
@@ -36,7 +37,8 @@ public class UserCreationTests extends TestBase {
                         .withHomeNumber(split[2])
                         .withEmail(split[3])
                         .withAddress(split[4])
-                        .withGroup(split[5])});
+//                        .withGroup(split[5])
+                });
                 line = reader.readLine();
             }
             return list.iterator();

@@ -2,6 +2,7 @@ package ru.stqa.pft.addressbook.tests;
 
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import ru.stqa.pft.addressbook.model.Groups;
 import ru.stqa.pft.addressbook.model.UserData;
 import ru.stqa.pft.addressbook.model.Users;
 
@@ -14,12 +15,15 @@ public class UserModificationTests extends TestBase {
 
     @BeforeMethod
     public void ensurePreconditions () {
+        Groups groups = app.db().groups();
         app.goTo().homePage();
         if (app.db().users().size() == 0) {
             app.goTo().addNew();
             app.user().create(new UserData().withFirstName("Kitty").withLastName("Cat").withAddress("UK, London, Privet Drive, 4")
                     .withNickname("meow").withHomeNumber("3472737").withMobNumber("89212343434").withWorkNumber("1420978")
-                    .withEmail("kittycat@test").withGroup("test1"));
+                    .withEmail("kittycat@test").inGroup(groups.iterator().next())
+//                    .withGroup("test1")
+            );
         }
     }
 
