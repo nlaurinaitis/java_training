@@ -5,9 +5,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
+import ru.stqa.pft.addressbook.model.GroupData;
 import ru.stqa.pft.addressbook.model.UserData;
 import ru.stqa.pft.addressbook.model.Users;
 
+import java.security.acl.Group;
 import java.util.List;
 
 public class ContactHelper extends BaseHelper {
@@ -138,5 +140,15 @@ public class ContactHelper extends BaseHelper {
         return new UserData().withId(user.getId()).withFirstName(firstName).withLastName(lastName).withAddress(address)
                 .withHomeNumber(homeNumber).withMobNumber(mobNumber).withWorkNumber(workNumber)
                 .withEmail(email).withEmail2(email2).withEmail3(email3);
+    }
+
+    public void addToGroup(UserData user, GroupData group) {
+        selectUserById(user.getId());
+        addUserToGroup(user, group);
+    }
+
+    public void addUserToGroup(UserData user, GroupData group) {
+        new Select(wd.findElement(By.name("to_group"))).selectByVisibleText(group.getName());
+        click(By.xpath("(//input[@value='Add to'])"));
     }
 }
