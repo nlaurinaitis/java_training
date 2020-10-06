@@ -29,8 +29,11 @@ public class UserModificationTests extends TestBase {
         UserData modifiedUser = before.iterator().next();
         File photo = new File("src/test/resources/goose.jpg");
         UserData user =
-                new UserData().withId(modifiedUser.getId()).withFirstName("Kitty3").withLastName("Cat3").withNickname("meow").withHomeNumber("3472737")
-                        .withEmail("kittycat@test").withPhoto(photo);
+                new UserData().withId(modifiedUser.getId()).withFirstName("Kitty3").withLastName("Cat3")
+                        .withAddress("UK, London, Privet Drive, 5").withNickname("meow")
+                        .withHomeNumber("3472737").withMobNumber("123").withWorkNumber("345")
+                        .withEmail("kittycat@test").withEmail2("kittycat1@test").withEmail3("kittycat2@test")
+                        .withPhoto(photo);
         app.user().modify(user);
         assertThat(app.user().count(), equalTo(before.size()));
         Users after = app.db().users();
