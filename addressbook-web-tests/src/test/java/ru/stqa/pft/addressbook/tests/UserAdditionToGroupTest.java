@@ -5,10 +5,7 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.GroupData;
 import ru.stqa.pft.addressbook.model.UserData;
 
-import java.util.Arrays;
-
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.Matchers.hasItem;
 
 public class UserAdditionToGroupTest extends TestBase {
@@ -26,7 +23,6 @@ public class UserAdditionToGroupTest extends TestBase {
             app.goTo().groupPage();
             app.group().create(new GroupData().withName("test1"));
         }
-        //add one more precond to check if the user is in all possible groups, if yes then create another group
     }
 
     @Test

@@ -23,7 +23,7 @@ public class UserRemovalFromGroupTest extends TestBase {
             Groups groups = app.db().groups();
             app.goTo().addNew();
             app.user().create(new UserData().withFirstName("Kitty").withLastName("Cat").withNickname("meow").withHomeNumber("3472737")
-                    .withEmail("kittycat@test").inGroup(groups.iterator().next())
+                    .withEmail("kittycat@test")
             );
         }
     }
@@ -33,14 +33,11 @@ public class UserRemovalFromGroupTest extends TestBase {
         Groups groups = app.db().groups();
         UserData userToRemove = app.db().users().iterator().next();
         GroupData groupToRemove = app.db().groups().iterator().next();
-        if (userToRemove.getGroups().contains(groupToRemove)) {
-            app.goTo().homePage();
-            app.user().removeFromGroup(userToRemove, groupToRemove);
-        } else {
+        if (!userToRemove.getGroups().contains(groupToRemove)) {
             app.user().addToGroup(userToRemove.inGroup((groups.iterator().next())), groupToRemove);
-            app.goTo().homePage();
-            app.user().removeFromGroup(userToRemove, groupToRemove);
         }
+        app.goTo().homePage();
+        app.user().removeFromGroup(userToRemove, groupToRemove);
         int userId = userToRemove.getId();
         UserData removedUser = app.db().usersById(userId).iterator().next();
         assertThat(removedUser.getGroups(), Matchers.not(hasItem(groupToRemove)));
