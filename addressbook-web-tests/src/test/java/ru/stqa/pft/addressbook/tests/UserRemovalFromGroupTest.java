@@ -1,16 +1,14 @@
 package ru.stqa.pft.addressbook.tests;
 
+import org.hamcrest.Matchers;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.GroupData;
 import ru.stqa.pft.addressbook.model.Groups;
 import ru.stqa.pft.addressbook.model.UserData;
 
-import java.util.Arrays;
-
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.contains;
 
 public class UserRemovalFromGroupTest extends TestBase {
 
@@ -34,7 +32,6 @@ public class UserRemovalFromGroupTest extends TestBase {
     public void testUserRemovalFromGroup() {
         Groups groups = app.db().groups();
         UserData userToRemove = app.db().users().iterator().next();
-//        GroupData groupToRemove = userToRemove.getGroups().iterator().next();
         GroupData groupToRemove = app.db().groups().iterator().next();
         if (userToRemove.getGroups().contains(groupToRemove)) {
             app.goTo().homePage();
@@ -46,6 +43,6 @@ public class UserRemovalFromGroupTest extends TestBase {
         }
         int userId = userToRemove.getId();
         UserData removedUser = app.db().usersById(userId).iterator().next();
-        assertThat(Arrays.asList(removedUser.getGroups()), contains(not(groupToRemove)));
+        assertThat(removedUser.getGroups(), Matchers.not(hasItem(groupToRemove)));
     }
 }
