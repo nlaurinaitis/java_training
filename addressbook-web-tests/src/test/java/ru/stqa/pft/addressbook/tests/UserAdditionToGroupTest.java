@@ -9,6 +9,7 @@ import java.util.Arrays;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.contains;
+import static org.hamcrest.Matchers.hasItem;
 
 public class UserAdditionToGroupTest extends TestBase {
 
@@ -41,7 +42,7 @@ public class UserAdditionToGroupTest extends TestBase {
         app.user().addToGroup(userToAdd, groupToAdd);
         int userId = userToAdd.getId();
         UserData addedUser = app.db().usersById(userId).iterator().next();
-        assertThat(Arrays.asList(addedUser.getGroups()), contains(groupToAdd));
+        assertThat(addedUser.getGroups(), hasItem(groupToAdd));
     }
 }
 
