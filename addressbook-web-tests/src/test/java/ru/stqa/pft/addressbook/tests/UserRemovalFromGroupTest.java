@@ -6,6 +6,8 @@ import ru.stqa.pft.addressbook.model.GroupData;
 import ru.stqa.pft.addressbook.model.Groups;
 import ru.stqa.pft.addressbook.model.UserData;
 
+import java.util.Arrays;
+
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.contains;
@@ -32,16 +34,18 @@ public class UserRemovalFromGroupTest extends TestBase {
     public void testUserRemovalFromGroup() {
         Groups groups = app.db().groups();
         UserData userToRemove = app.db().users().iterator().next();
-        if (userToRemove.getGroups().size() == 0) {
-            userToRemove.inGroup(groups.iterator().next());
+//        GroupData groupToRemove = userToRemove.getGroups().iterator().next();
+        GroupData groupToRemove = app.db().groups().iterator().next();
+        if (userToRemove.getGroups().contains(groupToRemove)) {
+            app.goTo().homePage();
+            app.user().removeFromGroup(userToRemove, groupToRemove);
+        } else {
+            app.user().addToGroup(userToRemove.inGroup((groups.iterator().next())), groupToRemove);
+            app.goTo().homePage();
+            app.user().removeFromGroup(userToRemove, groupToRemove);
         }
-        GroupData groupToRemove = userToRemove.getGroups().iterator().next();
-        int groupId = groupToRemove.getId();
-        GroupData groupToRemoveWithId = app.db().groupsById(groupId).iterator().next();
-        app.goTo().homePage();
-        app.user().removeFromGroup(userToRemove);
         int userId = userToRemove.getId();
         UserData removedUser = app.db().usersById(userId).iterator().next();
-        assertThat(removedUser.getGroups(), contains(not(groupToRemoveWithId)));
+        assertThat(Arrays.asList(removedUser.getGroups()), contains(not(groupToRemove)));
     }
 }
