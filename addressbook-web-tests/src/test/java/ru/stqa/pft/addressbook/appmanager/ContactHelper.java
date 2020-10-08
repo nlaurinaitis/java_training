@@ -151,4 +151,18 @@ public class ContactHelper extends BaseHelper {
         new Select(wd.findElement(By.name("to_group"))).selectByVisibleText(group.getName());
         click(By.xpath("(//input[@value='Add to'])"));
     }
+
+    public void removeFromGroup(UserData user) {
+        selectGroupOfUser(user);
+        selectUserById(user.getId());
+        click(By.xpath("(//input[@name='remove'])"));
+    }
+
+    public void selectGroupOfUser(UserData user) {
+        new Select(wd.findElement(By.name("group"))).selectByVisibleText(user.getGroups().iterator().next().getName());
+    }
+
+    public void selectAllGroupsOnHomePage() {
+        new Select(wd.findElement(By.name("group"))).selectByVisibleText("[all]");
+    }
 }

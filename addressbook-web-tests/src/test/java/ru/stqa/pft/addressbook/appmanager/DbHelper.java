@@ -34,10 +34,28 @@ public class DbHelper {
         return new Groups(result);
     }
 
+    public Groups groupsById(int id) {
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        List<GroupData> result = session.createQuery( "from GroupData where id = " + id).list();
+        session.getTransaction().commit();
+        session.close();
+        return new Groups(result);
+    }
+
     public Users users() {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
         List<UserData> result = session.createQuery( "from UserData where deprecated = '0000-00-00'").list();
+        session.getTransaction().commit();
+        session.close();
+        return new Users(result);
+    }
+
+    public Users usersById(int id) {
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        List<UserData> result = session.createQuery( "from UserData where id = " + id).list();
         session.getTransaction().commit();
         session.close();
         return new Users(result);
