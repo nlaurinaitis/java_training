@@ -38,6 +38,19 @@ public class HttpSession {
         return body.contains(String.format("<span class=\"label hidden-xs label-default arrowed\">%s</span>", username));
     }
 
+    public boolean userLogin(String username, String password) throws IOException {
+        HttpPost post = new HttpPost(app.getProperty("web.baseUrl") + "login.php");
+        List<NameValuePair> params = new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("username", username));
+        params.add(new BasicNameValuePair("password", password));
+        params.add(new BasicNameValuePair("secure_session", "on"));
+        params.add(new BasicNameValuePair("return", "index.php"));
+        post.setEntity(new UrlEncodedFormEntity(params));
+        CloseableHttpResponse response = httpClient.execute(post);
+        String body = getTextFrom(response);
+        return body.contains(String.format("<a href=\"/mantisbt-2.24.2/account_page.php\">%s</a>", username));
+    }
+
     private String getTextFrom(CloseableHttpResponse response) throws IOException {
         try {
             return EntityUtils.toString(response.getEntity());
