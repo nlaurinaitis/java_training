@@ -29,9 +29,9 @@ public class PasswordChangeTests extends TestBase {
         String email = String.format("user%s@localhost.localdomain", now);
         app.registration().start(user, email);
         List<MailMessage> mailMessages = app.mail().waitForMail(2, 20000);
-        String confirmationLink = findConfirmationLinkPrecond(mailMessages, email);
+        String confirmationLink = findConfirmationLink(mailMessages, email);
         app.registration().finish(confirmationLink, password);
-        app.goTo().logout();
+        app.ui().logout();
     }
 
     @Test
@@ -39,18 +39,25 @@ public class PasswordChangeTests extends TestBase {
         UserData user = app.db().users().iterator().next();
         String username = user.getUsername();
         String email = user.getEmail();
-        String newPassword = "password1";;
-        app.ui().uiLogin("administrator", "root");
-        app.goTo().manageUsersPage();
+        int userId = user.getId();
+        String newPassword = "password1";
 
+        app.ui().uiLogin(app.getProperty("web.adminLogin"), app.getProperty("web.adminPwd"));
+        app.ui().resetPwd(userId);
 
+        List<MailMessage> mailMessages = app.mail().waitForMail(1, 20000);
+        String confirmationLink = findConfirmationLink(mailMessages, email);
+        app.registration().finish(confirmationLink, newPassword);
+
+        assertTrue(app.newSession().userLogin(username, newPassword));
     }
 
-    private String findConfirmationLinkPrecond(List<MailMessage> mailMessages, String email) {
+    private String findConfirmationLink(List<MailMessage> mailMessages, String email) {
         MailMessage mailMessage = mailMessages.stream().filter((m) -> m.to.equals(email)).findFirst().get();
         VerbalExpression regex = VerbalExpression.regex().find("http://").nonSpace().oneOrMore().build();
         return regex.getText(mailMessage.text);
     }
+
 
         @AfterMethod(alwaysRun = true)
     public void stopMailServer() {

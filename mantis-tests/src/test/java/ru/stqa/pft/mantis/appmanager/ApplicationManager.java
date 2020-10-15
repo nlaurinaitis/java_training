@@ -21,7 +21,6 @@ public class ApplicationManager {
     private FtpHelper ftp;
     private MailHelper mailHelper;
     private JamesHelper jamesHelper;
-    private NavigationHelper navigationHelper;
     private DbHelper dbHelper;
     private UiHelper uiHelper;
 
@@ -90,13 +89,6 @@ public class ApplicationManager {
             jamesHelper = new JamesHelper(this);
         }
         return jamesHelper;
-    }
-
-    public NavigationHelper goTo() {
-        if (navigationHelper == null) {
-            navigationHelper = new NavigationHelper(this);
-        }
-        return navigationHelper;
     }
 
     public DbHelper db() {

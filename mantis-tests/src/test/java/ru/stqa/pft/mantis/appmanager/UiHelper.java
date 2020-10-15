@@ -16,4 +16,14 @@ public class UiHelper extends BaseHelper {
         click(By.xpath("//input[@value='Login']"));
     }
 
+    public void logout() {
+        click(By.cssSelector("a[href='/mantisbt-2.24.2/logout_page.php']"));
+    }
+
+    public void resetPwd (int userId) {
+        click(By.cssSelector("a[href='/mantisbt-2.24.2/manage_overview_page.php']"));
+        click(By.cssSelector("a[href='/mantisbt-2.24.2/manage_user_page.php']"));
+        click(By.cssSelector("a[href='manage_user_edit_page.php?user_id=" + userId + "']"));
+        click(By.cssSelector("input[value='Reset Password']"));
+    }
 }
