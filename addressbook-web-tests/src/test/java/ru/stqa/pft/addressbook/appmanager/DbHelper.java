@@ -10,7 +10,11 @@ import ru.stqa.pft.addressbook.model.Groups;
 import ru.stqa.pft.addressbook.model.UserData;
 import ru.stqa.pft.addressbook.model.Users;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class DbHelper {
 
@@ -29,15 +33,6 @@ public class DbHelper {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
         List<GroupData> result = session.createQuery( "from GroupData").list();
-        session.getTransaction().commit();
-        session.close();
-        return new Groups(result);
-    }
-
-    public Groups groupsById(int id) {
-        Session session = sessionFactory.openSession();
-        session.beginTransaction();
-        List<GroupData> result = session.createQuery( "from GroupData where id = " + id).list();
         session.getTransaction().commit();
         session.close();
         return new Groups(result);

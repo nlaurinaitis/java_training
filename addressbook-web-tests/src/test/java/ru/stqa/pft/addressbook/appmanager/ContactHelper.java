@@ -6,10 +6,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.GroupData;
+import ru.stqa.pft.addressbook.model.Groups;
 import ru.stqa.pft.addressbook.model.UserData;
 import ru.stqa.pft.addressbook.model.Users;
 
-import java.security.acl.Group;
+import java.util.Iterator;
 import java.util.List;
 
 public class ContactHelper extends BaseHelper {
@@ -164,5 +165,18 @@ public class ContactHelper extends BaseHelper {
 
     public void selectAllGroupsOnHomePage() {
         new Select(wd.findElement(By.name("group"))).selectByVisibleText("[all]");
+    }
+
+    public GroupData findUniqueGroup(UserData user, Groups groups) {
+        GroupData candidateGroup = null;
+        Iterator<GroupData> i = groups.iterator();
+        while (i.hasNext()) {
+            GroupData group = i.next();
+            if (!user.getGroups().contains(group)) {
+                candidateGroup = group;
+                break;
+            }
+        }
+        return candidateGroup;
     }
 }
