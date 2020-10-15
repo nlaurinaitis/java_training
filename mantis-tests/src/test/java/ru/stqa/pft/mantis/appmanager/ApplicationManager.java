@@ -23,6 +23,7 @@ public class ApplicationManager {
     private JamesHelper jamesHelper;
     private NavigationHelper navigationHelper;
     private DbHelper dbHelper;
+    private UiHelper uiHelper;
 
     public ApplicationManager(String browser) {
         this.browser = browser;
@@ -71,7 +72,7 @@ public class ApplicationManager {
             } else if (browser.equals(BrowserType.IE)) {
                 wd = new InternetExplorerDriver();
             }
-            wd.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+            wd.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
             wd.get(properties.getProperty("web.baseUrl"));
         }
         return wd;
@@ -103,5 +104,12 @@ public class ApplicationManager {
             dbHelper = new DbHelper(this);
         }
         return dbHelper;
+    }
+
+    public UiHelper ui() {
+        if (uiHelper == null) {
+            uiHelper = new UiHelper(this);
+        }
+        return uiHelper;
     }
 }
