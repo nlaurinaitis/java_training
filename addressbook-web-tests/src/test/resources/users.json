@@ -12,19 +12,5 @@
     "email3": "hp0@test2.com",
     "group": "test 0",
     "photo": "C:\\Users\\aslobods\\Downloads\\00000_java\\java_training\\addressbook-web-tests\\src\\test\\resources\\goose.jpg"
-  },
-  {
-    "firstName": "Harry1",
-    "lastName": "Potter1",
-    "nickname": "meow1",
-    "address": "UK, London, Privet Drive, 1",
-    "homeNumber": "3472731",
-    "mobNumber": "1231",
-    "workNumber": "3451",
-    "email": "hp1@test.com",
-    "email2": "hp1@test1.com",
-    "email3": "hp1@test2.com",
-    "group": "test 1",
-    "photo": "C:\\Users\\aslobods\\Downloads\\00000_java\\java_training\\addressbook-web-tests\\src\\test\\resources\\goose.jpg"
   }
 ]

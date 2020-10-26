@@ -40,7 +40,7 @@ public class UserRemovalFromGroupTest extends TestBase {
         Iterator<UserData> i = allUsers.iterator();
         while (i.hasNext()) {
             UserData u = i.next();
-            if (u.getGroups().size() < 0) {
+            if (u.getGroups().size() > 0) {
                 userToRemove = u;
                 groupToRemove = userToRemove.getGroups().iterator().next();
                 break;

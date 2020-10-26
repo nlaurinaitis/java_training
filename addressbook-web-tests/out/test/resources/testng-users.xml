@@ -3,11 +3,13 @@
 <suite name="Suite1" verbose="1" ><test name="Users">
         <classes>
             <class name="ru.stqa.pft.addressbook.tests.UserCreationTests"/>
-<!--            <class name="ru.stqa.pft.addressbook.tests.UserModificationTests"/>
+            <class name="ru.stqa.pft.addressbook.tests.UserModificationTests"/>
             <class name="ru.stqa.pft.addressbook.tests.UserDeletionTests"/>
             <class name="ru.stqa.pft.addressbook.tests.UserPhoneTests"/>
             <class name="ru.stqa.pft.addressbook.tests.UserAddressTests"/>
-            <class name="ru.stqa.pft.addressbook.tests.UserEmailTests"/>-->
+            <class name="ru.stqa.pft.addressbook.tests.UserEmailTests"/>
+            <class name="ru.stqa.pft.addressbook.tests.UserAdditionToGroupTest"/>
+            <class name="ru.stqa.pft.addressbook.tests.UserRemovalFromGroupTest"/>
         </classes>
     </test>
 </suite>
